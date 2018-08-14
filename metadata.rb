@@ -18,3 +18,5 @@ issues_url 'https://github.com/BaritoLog/barito-agent-cookbook/issues'
 # a Supermarket.
 #
 source_url 'https://github.com/BaritoLog/barito-agent-cookbook'
+
+depends 'td-agent', '~> 3.0'

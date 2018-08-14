@@ -24,9 +24,11 @@ suites:
         - test/integration/default
     attributes:
       barito-agent:
-        loggings:
-          - name: 'test-1'
-            log_file_path: '/var/log/syslog'
+        sources:
+          - name: 'syslog'
+            type: 'tail'
+            path: '/var/log/syslog'
+        matches:
+          - name: 'syslog'
+            type: 'barito_vm'
             app_secret: '123'
-            process_user: 'root'
-            process_group: 'root'
