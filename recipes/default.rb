@@ -23,10 +23,13 @@ node[cookbook_name]['sources'].each do |source|
     end
   end
 
+  parameters = source.select { |k, v| k != 'raw_options' }
+
   td_agent_source "source-#{source['name']}" do
     type source['type']
     tag source['name']
-    parameters source
+    parameters parameters
+    _raw_options source['raw_options'] if source['raw_options']
     action :create
   end
 end

@@ -13,6 +13,8 @@ default[cookbook_name]['sources'] = [
     type: 'systemd',
     name: 'barito-journalctl',
     path: '/run/log/journal',
+    raw_options: ['matches'],
+    matches: [{'_SYSTEMD_UNIT': 'syslog.service'}],
     read_from_head: true,
     storage: {
       '@type': 'local',
@@ -44,7 +46,5 @@ default[:td_agent][:plugins] = [
   'systemd',
   {"barito" => { "version" => "0.1.8"}}
 ]
-# default[:td_agent][:uid] = 'root'
-# default[:td_agent][:gid] = 'root'
 default[:td_agent][:includes] = true
 default[:td_agent][:default_config] = false
