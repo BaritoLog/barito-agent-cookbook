@@ -6,7 +6,13 @@
 #
 #
 
-apt_update
+if Chef::VERSION.split('.')[0].to_i > 12
+  apt_update
+else
+  apt_update 'apt update' do
+    action :update
+  end
+end
 package %w(build-essential zlib1g-dev)
 
 include_recipe 'td-agent'
