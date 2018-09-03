@@ -25,6 +25,12 @@ platforms:
     provisioner:
       product_name: chef
       product_version: latest
+  - name: opscode-ubuntu-14.04-chef-12
+    driver:
+      box: bento/ubuntu-14.04
+    provisioner:
+      product_name: chef
+      product_version: 12.21
 
 suites:
   - name: default
@@ -35,3 +41,15 @@ suites:
         - test/integration/default
     attributes:
       barito-agent:
+        sources:
+          - type: 'dummy'
+            name: 'barito-test'
+            dummy:
+              "hello": "world"
+        matches:
+          - type: barito_vm
+            name: 'barito-test'
+            application_secret: '123456'
+            produce_url: 'http://dummy.com'
+            buffer:
+              flush_mode: immediate

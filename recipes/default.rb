@@ -49,6 +49,6 @@ node[cookbook_name]['matches'].each do |match|
   end
 end
 
-execute 'Reload td-agent and systemctl' do
-  command 'sudo systemctl daemon-reload && sudo systemctl restart td-agent'
+service 'td-agent' do
+  action :restart
 end
