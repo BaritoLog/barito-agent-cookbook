@@ -49,6 +49,18 @@ node[cookbook_name]['matches'].each do |match|
   end
 end
 
-service 'td-agent' do
-  action :restart
+case node["platform_version"]
+when "14.04"
+  service 'td-agent' do
+    action :restart
+    supports :status => true, :start => true, :stop => true, :restart => true
+    provider Chef::Provider::Service::Upstart
+  end
+
+else
+  service 'td-agent' do
+    action :restart
+    supports :status => true, :start => true, :stop => true, :restart => true
+    provider Chef::Provider::Service::Systemd
+  end
 end
