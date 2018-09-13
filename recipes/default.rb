@@ -30,8 +30,7 @@ end
 node[cookbook_name]['sources'].each do |source|
   barito_agent_source source['name'] do
     type source['type']
-    parameters source.select { |k, v| k != 'raw_options' }
-    raw_options source['raw_options'] if source['raw_options']
+    parameters source
   end
 end
 
