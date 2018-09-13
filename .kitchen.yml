@@ -42,14 +42,16 @@ suites:
     attributes:
       barito-agent:
         sources:
-          - type: 'dummy'
+          - type: 'tail'
             name: 'barito-test'
-            dummy:
-              "hello": "world"
+            path: '/var/log/dpkg.log'
+            pos_file: '/etc/td-agent/dpkg.pos'
+            parse:
+              '@type': 'none'
         matches:
           - type: barito_vm
             name: 'barito-test'
             application_secret: '123456'
-            produce_url: 'http://dummy.com'
+            produce_url: 'https://barito-router.local/produce'
             buffer:
               flush_mode: immediate

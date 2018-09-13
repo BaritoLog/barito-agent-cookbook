@@ -28,23 +28,17 @@ unless node['platform_version'] == '14.04'
 end
 
 node[cookbook_name]['sources'].each do |source|
-  parameters = source.select { |k, v| k != 'raw_options' }
-
-  td_agent_source "source-#{source['name']}" do
+  barito_agent_source source['name'] do
     type source['type']
-    tag source['name']
-    parameters parameters
-    _raw_options source['raw_options'] if source['raw_options']
-    action :create
+    parameters source.select { |k, v| k != 'raw_options' }
+    raw_options source['raw_options'] if source['raw_options']
   end
 end
 
 node[cookbook_name]['matches'].each do |match|
-  td_agent_match "match-#{match['name']}" do
+  barito_agent_match match['name'] do
     type match['type']
-    tag match['name']
     parameters match
-    action :create
   end
 end
 
