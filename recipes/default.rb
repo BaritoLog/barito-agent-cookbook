@@ -17,18 +17,17 @@ package %w(build-essential zlib1g-dev)
 
 include_recipe 'td-agent'
 
-
-node[cookbook_name]['sources'].each do |source|
-  if source['type'] == 'systemd'
-    execute 'Change group ownership of journalctl directory' do
-      command 'sudo chown -R :systemd-journal /run/log/journal'
-    end
-
-    execute 'Add td-agent to systemd-journal group' do
-      command 'sudo usermod -a -G systemd-journal td-agent'
-    end
+unless node['platform_version'] == '14.04'
+  execute 'Change group ownership of journalctl directory' do
+    command 'sudo chown -R :systemd-journal /run/log/journal'
   end
 
+  execute 'Add td-agent to systemd-journal group' do
+    command 'sudo usermod -a -G systemd-journal td-agent'
+  end
+end
+
+node[cookbook_name]['sources'].each do |source|
   parameters = source.select { |k, v| k != 'raw_options' }
 
   td_agent_source "source-#{source['name']}" do
@@ -56,7 +55,6 @@ when "14.04"
     supports :status => true, :start => true, :stop => true, :restart => true
     provider Chef::Provider::Service::Upstart
   end
-
 else
   service 'td-agent' do
     action :restart
