@@ -12,6 +12,7 @@ unless os.windows?
 
   describe user('td-agent')  do
     it { should exist }
+    its('groups') { should eq ['td-agent', 'root'] }
   end
 end
 

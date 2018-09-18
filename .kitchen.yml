@@ -55,3 +55,4 @@ suites:
             produce_url: 'https://barito-router.local/produce'
             buffer:
               flush_mode: immediate
+        groups: ['root']

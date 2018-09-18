@@ -27,6 +27,15 @@ unless node['platform_version'] == '14.04'
   end
 end
 
+node[cookbook_name]['groups'].each do |group|
+  group "#{group}" do
+    append true
+    members 'td-agent'
+    action :modify
+    notifies :restart, "service[td-agent]", :delayed
+  end
+end
+
 node[cookbook_name]['sources'].each do |source|
   barito_agent_source source['name'] do
     type source['type']

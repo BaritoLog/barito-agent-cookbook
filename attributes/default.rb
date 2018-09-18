@@ -10,6 +10,7 @@ cookbook_name = 'barito-agent'
 
 default[cookbook_name]['sources'] = []
 default[cookbook_name]['matches'] = []
+default[cookbook_name]['groups'] = []
 
 ## td-agent specific configuration
 default[:td_agent][:version] = '3'
