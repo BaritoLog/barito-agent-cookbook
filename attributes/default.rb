@@ -16,7 +16,7 @@ default[cookbook_name]['groups'] = []
 default[:td_agent][:version] = '3'
 default[:td_agent][:plugins] = [
   'systemd',
-  {"barito" => { "version" => "0.1.13"}}
+  {"barito" => { "version" => "0.2.0"}}
 ]
 default[:td_agent][:includes] = true
 default[:td_agent][:default_config] = false
