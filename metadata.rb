@@ -4,7 +4,7 @@ maintainer_email 'you@example.com'
 license 'MIT'
 description 'Installs/Configures Barito Agent'
 long_description 'Installs/Configures Barito Agent'
-version '0.3.1'
+version '0.3.2'
 chef_version '>= 12.14' if respond_to?(:chef_version)
 
 # The `issues_url` points to the location where issues for this cookbook are

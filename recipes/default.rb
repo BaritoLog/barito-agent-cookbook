@@ -36,6 +36,19 @@ node[cookbook_name]['groups'].each do |group|
   end
 end
 
+directory "/etc/td-agent/conf.d" do
+  recursive true
+  action :delete
+end
+
+directory "/etc/td-agent/conf.d" do
+  owner 'td-agent'
+  group 'td-agent'
+  mode '0755'
+  recursive true
+  action :create
+end
+
 node[cookbook_name]['sources'].each do |source|
   barito_agent_source source['name'] do
     type source['type']
