@@ -77,3 +77,11 @@ else
     provider Chef::Provider::Service::Systemd
   end
 end
+
+template '/etc/logrotate.d/td-agent' do
+  source 'logrotate/td-agent.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
+  variables directory: "#{node['td_agent']['log_directory']}"
+end
