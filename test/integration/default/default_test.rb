@@ -10,9 +10,18 @@ unless os.windows?
     it { should exist }
   end
 
-  describe user('td-agent')  do
-    it { should exist }
-    its('groups') { should eq ['td-agent', 'root'] }
+
+  case os.release
+  when *["16.04", "18.04"]
+    describe user('td-agent')  do
+      it { should exist }
+      its('groups') { should eq ['td-agent', 'root', 'systemd-journal'] }
+    end
+  else
+    describe user('td-agent')  do
+      it { should exist }
+      its('groups') { should eq ['td-agent', 'root'] }
+    end
   end
 end
 
@@ -32,4 +41,9 @@ describe service('td-agent') do
   it { should be_installed }
   it { should be_enabled }
   it { should be_running }
+end
+
+describe file('/etc/logrotate.d/td-agent') do
+  it { should be_a_file }
+  its('mode') { should cmp '0644' }
 end

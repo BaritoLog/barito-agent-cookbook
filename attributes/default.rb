@@ -11,6 +11,7 @@ cookbook_name = 'barito-agent'
 default[cookbook_name]['sources'] = []
 default[cookbook_name]['matches'] = []
 default[cookbook_name]['groups'] = []
+default[cookbook_name]['log_directory'] = "/var/log/td-agent"
 
 ## td-agent specific configuration
 default[:td_agent][:version] = '3'
