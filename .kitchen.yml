@@ -18,7 +18,7 @@ platforms:
       box: bento/ubuntu-16.04
     provisioner:
       product_name: chef
-      product_version: 12.21
+      product_version: 12.12
   - name: opscode-ubuntu-16.04-chef-14
     driver:
       box: bento/ubuntu-16.04
@@ -30,7 +30,7 @@ platforms:
       box: bento/ubuntu-14.04
     provisioner:
       product_name: chef
-      product_version: 12.21
+      product_version: 12.12
 
 suites:
   - name: default
