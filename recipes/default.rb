@@ -18,6 +18,10 @@ package %w(build-essential zlib1g-dev)
 include_recipe 'td-agent'
 
 unless node['platform_version'] == '14.04'
+  directory "/run/log/journal" do
+    not_if { ::Dir.exist?("/run/log/journal") }
+  end
+
   execute 'Change group ownership of journalctl directory' do
     command 'sudo chown -R :systemd-journal /run/log/journal'
   end
