@@ -46,4 +46,5 @@ end
 describe file('/etc/logrotate.d/td-agent') do
   it { should be_a_file }
   its('mode') { should cmp '0644' }
+  its('content') { should include '/var/log/td-agent/*.log' }
 end

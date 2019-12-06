@@ -87,5 +87,5 @@ template '/etc/logrotate.d/td-agent' do
   owner 'root'
   group 'root'
   mode '0644'
-  variables directory: "#{node['td_agent']['log_directory']}"
+  variables directory: "#{node['barito-agent']['log_directory']}"
 end
