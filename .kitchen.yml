@@ -63,4 +63,9 @@ suites:
             produce_url: 'https://barito-router.local/produce'
             buffer:
               flush_mode: immediate
+        filters:
+          - type: record_transformer
+            name: 'barito-test'
+            records:
+              - hostname: 'barito-vm'
         groups: ['root']
