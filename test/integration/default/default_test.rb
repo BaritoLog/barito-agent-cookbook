@@ -10,7 +10,6 @@ unless os.windows?
     it { should exist }
   end
 
-
   case os.release
   when *["16.04", "18.04"]
     describe user('td-agent')  do
@@ -34,6 +33,10 @@ describe file('/etc/td-agent/conf.d/source-barito-test.conf') do
 end
 
 describe file('/etc/td-agent/conf.d/match-barito-test.conf') do
+  its('mode') { should cmp '0644' }
+end
+
+describe file('/etc/td-agent/conf.d/filter-barito-test.conf') do
   its('mode') { should cmp '0644' }
 end
 

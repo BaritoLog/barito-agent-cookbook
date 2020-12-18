@@ -67,6 +67,13 @@ node[cookbook_name]['matches'].each do |match|
   end
 end
 
+node[cookbook_name]['filters'].each do |filter|
+  barito_agent_filter filter['name'] do
+    type filter['type']
+    parameters filter
+  end
+end
+
 case node["platform_version"]
 when "14.04"
   service 'td-agent' do
