@@ -82,6 +82,13 @@ when "14.04"
     provider Chef::Provider::Service::Upstart
   end
 else
+  template '/etc/init.d/td-agent' do
+    source 'systemd/td-agent-init.erb'
+    owner 'root'
+    group 'root'
+    mode '0755'
+    not_if { ::File.exist?("/etc/init.d/td-agent") }
+  end
   service 'td-agent' do
     action :restart
     supports :status => true, :start => true, :stop => true, :restart => true
