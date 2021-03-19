@@ -1,4 +1,5 @@
 property :name, String, name_property: true
+property :tag, String, name_property: true
 property :type, String, required: true
 property :parameters, Hash, default: {}
 
@@ -10,7 +11,7 @@ action :config do
 
   td_agent_source "source-#{new_resource.name}" do
     type new_resource.type
-    tag new_resource.name
+    tag new_resource.tag
     parameters parameters
     _raw_options raw_options if raw_options
     action :create
