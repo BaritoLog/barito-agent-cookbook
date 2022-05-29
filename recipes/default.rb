@@ -6,6 +6,12 @@
 #
 #
 
+if node['platform_version'] == '20.04'
+  execute 'Force fix tdagent repository configuration changes' do
+    command 'sudo apt update -y'
+  end
+end
+
 if Chef::VERSION.split('.')[0].to_i > 12
   apt_update
 else
