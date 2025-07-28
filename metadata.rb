@@ -19,4 +19,4 @@ issues_url 'https://github.com/BaritoLog/barito-agent-cookbook/issues'
 #
 source_url 'https://github.com/BaritoLog/barito-agent-cookbook'
 
-depends 'td-agent', '~> 3.0'
+depends 'td-agent', '= 3.3.0'
